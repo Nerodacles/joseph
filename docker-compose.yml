@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  pharmacyapi:
+    container_name: PharmacyAPI
+    restart: unless-stopped
+    image: nerodacles/pharmacyapi:latest
+    build:
+      context: ./
+      target: dev
+    networks:
+      pharmacyapp:
+        ipv4_address: 172.20.0.4
+    volumes:
+      - .:/src
+      - /home/nero/PharmacyApp/PharmacyFiles/Images:/src/uploads
+    command: npm start
+    ports:
+      - "8087:3000"
+    environment:
+      NODE_ENV: development
+      DEBUG: nodejs-docker-express:*
+
+networks:
+  pharmacyapp:
+    external: true
