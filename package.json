@@ -1,7 +1,7 @@
 {
-  "name": "pharmacyapp-api",
-  "version": "0.0.1",
-  "description": "PharmacyApp Api",
+  "name": "crofritec-api",
+  "version": "1.0.0",
+  "description": "Crofritec Api",
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
