@@ -1,0 +1,24 @@
+name: Docker Compose Actions Workflow
+on: workflow_dispatch
+
+jobs:
+  DockerCompose:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install npm packages
+        run: npm install
+      - name: Create env file
+        run: |
+          touch .env
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
+          echo "URL=${{ secrets.URL }}" >> .env
+          echo "USER=${{ secrets.USER }}" >> .env
+          echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
+          echo "USERADMIN=${{ secrets.USERADMIN }}" >> .env
+          echo "PASSWORDADMIN=${{ secrets.PASSWORDADMIN }}" >> .env
+          echo "TOKEN_SECRET=${{ secrets.TOKEN_SECRET }}" >> .env
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+      
+      - name: Build the stack
+        run: docker-compose up -d --force-recreate
