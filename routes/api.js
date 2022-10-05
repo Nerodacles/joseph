@@ -256,7 +256,7 @@ router.get('/inventory/:id', async (req, res, next) => {
 *         description: Unauthorized
 */
 
-router.post('/inventory', async (req, res, next) => {
+router.post('/inventory',upload.single('image'), async (req, res, next) => {
     let token = req.headers.authorization;
     if (await userServices.checkUserIsAdmin(token)) {
         try {
@@ -265,7 +265,7 @@ router.post('/inventory', async (req, res, next) => {
                 quantity: req.body.quantity,
                 price: req.body.price,
                 provider: req.body.provider,
-                image: 'ioc no sirve'
+                image: path.join('api.vslayer.me/uploads/' + req.file.filename.trim()),
             })
             await item.save();
             res.json(item);
