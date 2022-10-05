@@ -12,7 +12,7 @@ router.use(limiter)
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express - PharmacyAPI' });
+  res.render('index', { title: 'Express - Inventory' });
 });
 
 module.exports = router;
