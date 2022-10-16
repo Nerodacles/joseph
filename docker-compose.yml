@@ -12,7 +12,7 @@ services:
         ipv4_address: 172.20.0.4
     volumes:
       - .:/src
-      # - /home/nero/PharmacyApp/PharmacyFiles/Images:/src/uploads
+      - /home/ioc/ApiImages:/src/uploads
     command: npm start
     ports:
       - "8087:3000"
